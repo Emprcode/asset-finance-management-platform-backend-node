@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { connectDb } from "./src/config/DbConfig.js";
+import UserRouter from "./src/router/UserRouter.js";
 
 const app = express();
 
@@ -15,11 +16,16 @@ app.use(morgan("dev"));
 
 connectDb();
 
-app.use("/", (req, res, next) => {
-  res.json({
-    message: "You do not have access here",
-  });
-});
+//router
+
+//router
+app.use("/api/v1/user", UserRouter);
+
+// app.use("/", (req, res, next) => {
+//   res.json({
+//     message: "You do not have access here",
+//   });
+// });
 
 app.listen(PORT, (error) => {
   error ? console.log(error) : console.log(`your server is running at http://localhost:${PORT}`);
