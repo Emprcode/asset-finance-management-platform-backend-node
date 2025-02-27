@@ -3,7 +3,7 @@ import { createUser, getSingleUser } from "../model/user/UserModel.js";
 
 const router = express.Router();
 
-//post user
+//register user
 router.post("/", async (req, res, next) => {
   try {
     const result = await createUser(req.body);
@@ -26,26 +26,24 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-//login
+//login user
 router.post("/login", async (req, res, next) => {
   try {
-    console.log(req.body);
-
     const result = await getSingleUser(req.body);
-    console.log(result);
     result?._id
       ? res.json({
           status: "success",
-          message: "User Logged in successfully",
+          message: "User Logged in successfully!",
           result: {
             _id: result._id,
-            name: result.name,
+            firstName: result.firstName,
+            lastName: result.lastName,
             email: result.email,
           },
         })
       : res.json({
           status: "error",
-          message: "unable to login",
+          message: "Unable to login, Please try again later!",
         });
   } catch (error) {
     next(error);

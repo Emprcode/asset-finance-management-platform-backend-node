@@ -8,25 +8,22 @@ const app = express();
 
 const PORT = process.env.PORT || 8000;
 
+//middlewares
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 
 //database
-
 connectDb();
-
-//router
 
 //router
 app.use("/api/v1/user", UserRouter);
 
-// app.use("/", (req, res, next) => {
-//   res.json({
-//     message: "You do not have access here",
-//   });
-// });
-
+app.use("/", (req, res, next) => {
+  res.json({
+    message: "You do not have access here",
+  });
+});
 app.listen(PORT, (error) => {
   error ? console.log(error) : console.log(`your server is running at http://localhost:${PORT}`);
 });
