@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import { connectDb } from "./src/config/DbConfig.js";
 import UserRouter from "./src/router/UserRouter.js";
+import ApplicationRouter from "./src/router/ApplicationRouter.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ connectDb();
 
 //router
 app.use("/api/v1/user", UserRouter);
+app.use("/api/v1/application", ApplicationRouter);
 
 app.use("/", (req, res, next) => {
   res.json({
