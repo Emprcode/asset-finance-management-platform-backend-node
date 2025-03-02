@@ -16,6 +16,6 @@ export const updateApplication = (_id, updateObj) => {
   return ApplicationSchema.findByIdAndUpdate(_id, updateObj, { new: true });
 };
 
-export const deleteUsersApplication = (_id, userId) => {
-  return ApplicationSchema.findOneAndDelete(_id, userId);
+export const deleteUsersApplication = (_id) => {
+  return ApplicationSchema.findOneAndDelete(_id);
 };
