@@ -85,21 +85,24 @@ router.put("/", async (req, res, next) => {
 
 // delete application
 
-router.delete("/:_id", async (req, res, next) => {
+router.delete("/", async (req, res, next) => {
   try {
     const { authorization } = req.headers;
-    const { _id } = req.params;
-    const result = await deleteUsersApplication({ _id, userId: authorization });
-    result._id
-      ? res.json({
-          status: "success",
-          message: "Application deleted successfully",
-          result,
-        })
-      : res.json({
-          status: "error",
-          message: "error",
-        });
+    const { _id } = req.body;
+    console.log(authorization, _id);
+    if (authorization) {
+      const result = await deleteUsersApplication({ _id });
+      result._id
+        ? res.json({
+            status: "success",
+            message: "Application deleted successfully",
+            result,
+          })
+        : res.json({
+            status: "error",
+            message: "error",
+          });
+    }
   } catch (error) {
     next(error);
   }

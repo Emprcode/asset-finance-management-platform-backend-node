@@ -6,11 +6,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "active",
     },
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
+    name: {
       type: String,
       required: true,
     },
